@@ -1,0 +1,113 @@
+.baroland__navbar {
+  padding: 1rem 7rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.baroland__navbar-left {
+  color: rgba(0, 0, 0, 0.9);
+}
+.baroland__navbar-right {
+  display: flex;
+  justify-content: space-between;
+}
+.baroland__navbar-right a {
+  margin-left: 15px;
+}
+
+.baroland__banner {
+  background-color: rgb(0, 105, 255);
+  height: 15rem;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 7rem;
+  justify-content: space-around;
+  font-size: larger;
+}
+.baroland__banner h3 {
+}
+.baroland__banner input {
+  height: 3rem;
+  border: none;
+  border-radius: 0.4rem;
+  outline: none;
+  padding: 1rem;
+  font-size: large;
+}
+.container {
+  margin: 1.6rem 8rem;
+}
+.baroland__row {
+  margin: 0 12px;
+
+  display: flex;
+  flex-direction: row;
+}
+.baroland__left-section {
+  width: 25%;
+
+  padding: 0 12px;
+}
+.baroland__right-section {
+  width: 75%;
+
+  padding: 0 12px;
+}
+.baroland__right-section-top {
+  display: flex;
+  justify-content: space-between;
+}
+.baroland__right-section-top button {
+  background-color: rgb(0, 105, 255);
+  color: white;
+  border: 1px solid rgb(0, 105, 255);
+
+  border-radius: 5px;
+  padding: 6px 12px;
+}
+.btn {
+  align-self: flex-end;
+  width: 30%;
+  background-color: rgb(0, 105, 255);
+  color: white;
+  border: 1px solid rgb(0, 105, 255);
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 6px 12px;
+}
+
+/* inscription */
+.incription-container {
+  display: flex;
+  margin: 1rem;
+  height: 95vh;
+  border-radius: 10px;
+}
+.incription-dev-forum {
+  background-color: rgb(0, 105, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+.connexion-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+.connexion {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 60%;
+  width: 60%;
+}
+.connexion input {
+  width: 100%;
+}
+.connexion button {
+  width: 100%;
+}
