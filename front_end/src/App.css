@@ -92,22 +92,21 @@
   align-items: center;
   width: 50%;
 }
-.connexion-container {
+.inscription-container-right {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50%;
 }
-.connexion {
+.inscription {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 60%;
   width: 60%;
 }
-.connexion input {
+.inscription input {
   width: 100%;
 }
-.connexion button {
+.inscription button {
   width: 100%;
 }
