@@ -4,12 +4,7 @@ import Question from '../models/questions.js'
 
 // getting questions
 router.get('/', async (req, res) => {
-  Question.find()
-    .then((questions) => res.json(questions))
-    .catch((err) => {
-      console.error(err)
-      res.status(500).json({ error: 'Internal server error' })
-    })
+  res.json(await Question.find().limit(10))
 })
 // creating a new Question
 router.post('/add-question', async (req, res) => {

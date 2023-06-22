@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+
 import Navbar from '../components/Navbar'
 import { Link } from 'react-router-dom'
 import Topics from '../components/Topics'
@@ -8,6 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 const Home = () => {
   const [questions, setQuestions] = useState([])
+  useEffect(() => {
+    fetch('http://localhost:5000/questions').then((response) => {
+      response.json().then((questions) => {
+        setQuestions(questions)
+      })
+    })
+  }, [])
 
   return (
     <div>
@@ -42,9 +49,8 @@ const Home = () => {
               </Link>
             </div>
             <div className='baroland__right-section-bottom'>
-              <Question />
               {questions.map((question) => (
-                <Question key={new Date()} />
+                <Question {...question} />
               ))}
             </div>
           </div>
