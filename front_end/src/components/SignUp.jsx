@@ -1,24 +1,34 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 
 const SignUp = () => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
+  const [redirect, setRedirect] = useState(false)
 
   async function Inscription(e) {
     e.preventDefault()
-    const response = await fetch('http://localhost:5000/register', {
-      method: 'POST',
-      body: JSON.stringify({ username, email, password, passwordConfirm }),
-      headers: { 'Content-Type': 'application/json' },
-    })
-    if (response.status === 200) {
-      alert('resgistration successful')
+    if (password !== passwordConfirm) {
+      alert('password do not match')
     } else {
-      alert('resgistration failed')
+      const response = await fetch('http://localhost:5000/register', {
+        method: 'POST',
+        body: JSON.stringify({ username, email, password, passwordConfirm }),
+        headers: { 'Content-Type': 'application/json' },
+      })
+
+      if (response.status === 200) {
+        alert('resgistration successful')
+        setRedirect(true)
+      } else {
+        alert('resgistration failed')
+      }
     }
+  }
+  if (redirect) {
+    return <Navigate to={'/'} />
   }
   return (
     <>
@@ -37,7 +47,7 @@ const SignUp = () => {
         <div className='input-container'>
           <label htmlFor=''>Email</label>
           <input
-            type='text'
+            type='email'
             value={email}
             onChange={(e) => {
               setEmail(e.target.value)
@@ -47,7 +57,7 @@ const SignUp = () => {
         <div className='input-container'>
           <label htmlFor=''>Mot de passe</label>
           <input
-            type='text'
+            type='password'
             value={password}
             onChange={(e) => {
               setPassword(e.target.value)
@@ -57,7 +67,7 @@ const SignUp = () => {
         <div className='password'>
           <label htmlFor=''>Mot de passe confirmation</label>
           <input
-            type='text'
+            type='password'
             value={passwordConfirm}
             onChange={(e) => {
               setPasswordConfirm(e.target.value)

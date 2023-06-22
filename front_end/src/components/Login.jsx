@@ -1,12 +1,23 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 
 const Login = () => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [redirect, setRedirect] = useState(false)
   function Login(e) {
     e.preventDefault()
+    fetch('http://localhost:5000/login', {
+      method: 'POST',
+      body: JSON.stringify({ username, email, password }),
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+    })
+    setRedirect(true)
+  }
+  if (redirect) {
+    return <Navigate to={'/home'} />
   }
   return (
     <>
@@ -25,7 +36,7 @@ const Login = () => {
         <div className='input-container'>
           <label htmlFor=''>Email</label>
           <input
-            type='text'
+            type='email'
             value={email}
             onChange={(e) => {
               setEmail(e.target.value)
@@ -35,7 +46,7 @@ const Login = () => {
         <div className='password'>
           <label htmlFor=''>Mot de passe</label>
           <input
-            type='text'
+            type='password'
             value={password}
             onChange={(e) => {
               setPassword(e.target.value)

@@ -12,13 +12,18 @@ router.get('/', async (req, res) => {
     })
 })
 // creating a new Question
-router.post('/', async (req, res) => {
-  const question = new Question({
-    title: req.body.title,
-    question: req.body.question,
-    category: req.body.category,
-  })
-  question.save()
+router.post('/add-question', async (req, res) => {
+  const { title, description, category } = req.body
+  try {
+    const userDoc = await Question.create({
+      title,
+      description,
+      category,
+    })
+    res.json(userDoc)
+  } catch (e) {
+    res.status(400).json(e)
+  }
 })
 export default router
 

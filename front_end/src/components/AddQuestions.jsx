@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 const AddQuestions = () => {
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [category, setCategory] = useState('')
+  async function PostQuestion(e) {
+    e.preventDefault()
+    await fetch('http://localhost:5000/questions/add-question', {
+      method: 'POST',
+      body: JSON.stringify({ title, description, category }),
+      headers: { 'Content-Type': 'application/json' },
+    })
+  }
   return (
     <div className='question-container'>
       <div className='row'>
@@ -22,26 +33,39 @@ const AddQuestions = () => {
             </div>
           </Link>
         </div>
-        <form action='' className='form'>
+        <form onSubmit={PostQuestion} className='form'>
           <div>
             <p>Titre de la question</p>
-            <input type='text' />
+            <input
+              type='text'
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </div>
           <div>
             <p> Contenu de la question</p>
-            <textarea name='' id='' rows='8'>
-              something here
-            </textarea>
+            <textarea
+              name=''
+              id=''
+              rows='8'
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
           </div>
           <div>
             <p>Technologies / Categories</p>
-            <input type='text' placeholder='type something' />
+            <input
+              type='text'
+              placeholder='type something'
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            />
           </div>
+          <button className='btn btn-question'>
+            Poser ma question
+            <FontAwesomeIcon icon={faArrowRight} />
+          </button>
         </form>
-        <button className='btn btn-question'>
-          Poser ma question
-          <FontAwesomeIcon icon={faArrowRight} />
-        </button>
       </div>
     </div>
   )

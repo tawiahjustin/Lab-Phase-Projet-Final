@@ -8,18 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 const Home = () => {
   const [questions, setQuestions] = useState([])
-  useEffect(() => {
-    fetchQuestions()
-  }, [])
-
-  const fetchQuestions = async () => {
-    try {
-      const response = await axios.get('/questions')
-      setQuestions(response.data)
-    } catch (error) {
-      console.error(error)
-    }
-  }
 
   return (
     <div>
