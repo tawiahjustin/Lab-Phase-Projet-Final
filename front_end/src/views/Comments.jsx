@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Comments = () => {
+  const [comment, setComment] = useState('')
   return (
     <div className='comment__container'>
       <div className='comment__left'>
