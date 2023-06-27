@@ -154,6 +154,8 @@ const Comments = () => {
           cols='10'
           rows='3'
           placeholder='Ajouter un commentaire'
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
         ></textarea>
         <button className='btn'>Commenter</button>
       </div>
