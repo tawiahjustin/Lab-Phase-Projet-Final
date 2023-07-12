@@ -37,7 +37,7 @@ app.use(cookieParser())
 app.use('/user', userRouter)
 app.use('/questions', questionRouter)
 app.use('/comments', commentRouter)
-
+// Sign up
 app.post('/register', async (req, res) => {
   const { username, email, password, passwordConfirm } = req.body
   try {
@@ -60,7 +60,7 @@ app.post('/login', async (req, res) => {
     // login
     jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
       if (err) throw err
-      res.cookie('token', token).json({ id: userDoc._id, username })
+      res.cookie('token', token).json({ id: userDoc._id, username, email })
     })
   } else {
     res.status(400).json('wrong credentials')

@@ -1,12 +1,12 @@
 import React from 'react'
 
-const Navbar = () => {
+const Navbar = ({ email }) => {
   return (
     <div className='baroland__navbar'>
-      <a className='baroland__navbar-left'>Baroland</a>
+      <span className='baroland__navbar-left'>Baroland</span>
       <div className='baroland__navbar-right'>
-        <a>justintawiah@gmail.com</a>
-        <a>Logout</a>
+        <span>{email}</span>
+        <span>Logout</span>
       </div>
     </div>
   )

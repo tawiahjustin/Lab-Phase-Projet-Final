@@ -4,10 +4,10 @@ import Navbar from '../components/Navbar'
 import { Link } from 'react-router-dom'
 import Topics from '../components/Topics'
 import Question from '../components/Question'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+
 const Home = () => {
   const [questions, setQuestions] = useState([])
+  const [user, setUser] = useState()
   useEffect(() => {
     fetch('http://localhost:5000/questions').then((response) => {
       response.json().then((questions) => {
@@ -15,10 +15,17 @@ const Home = () => {
       })
     })
   }, [])
+  useEffect(() => {
+    fetch('http://localhost:5000/user').then((response) => {
+      response.json().then((user) => {
+        setUser(user)
+      })
+    })
+  }, [])
 
   return (
     <div>
-      <Navbar />
+      <Navbar user={user} />
       <div className='baroland__banner'>
         <h1>Questions</h1>
         <h4>
@@ -41,10 +48,10 @@ const Home = () => {
           </div>
           <div className='baroland__right-section'>
             <div className='baroland__right-section-top'>
-              <p>10 questions</p>
+              <p>{questions.length} questions.</p>
               <Link to='/add-question'>
                 <button>
-                  Poser une question{' '}
+                  Poser une question
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     fill='none'
